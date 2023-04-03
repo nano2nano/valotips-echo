@@ -16,13 +16,14 @@ func init() {
 	password := os.Getenv("POSTGRES_PASSWORD")
 	dbname := os.Getenv("POSTGRES_DB")
 	hostname := os.Getenv("POSTGRES_HOSTNAME")
+	port := os.Getenv("POSTGRES_PORT")
 
 	// set timezone
 	timezone := "Asia/Tokyo"
 	if value, ok := os.LookupEnv("TZ"); ok {
 		timezone = value
 	}
-	dsn := "host=" + hostname + " user=" + user + " password=" + password + " dbname=" + dbname + " port=5432 sslmode=disable TimeZone=" + timezone
+	dsn := "host=" + hostname + " user=" + user + " password=" + password + " dbname=" + dbname + " port=" + port + " sslmode=disable TimeZone=" + timezone
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalln(err)
