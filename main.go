@@ -21,6 +21,9 @@ func main() {
 		panic(err)
 	}
 
+	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Hello, World!")
+	})
 	e.GET("/posts", controller.GetPosts)
 	e.GET("/posts/:id", controller.GetPost)
 	e.POST("/posts", controller.CreatePost)
