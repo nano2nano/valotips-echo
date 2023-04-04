@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"valotips/controller"
 	"valotips/model"
 
@@ -24,5 +25,6 @@ func main() {
 	e.GET("/posts/:id", controller.GetPost)
 	e.POST("/posts", controller.CreatePost)
 
-	e.Logger.Fatal(e.Start(":8080"))
+	port := os.Getenv("PORT")
+	e.Logger.Fatal(e.Start(":" + port))
 }
